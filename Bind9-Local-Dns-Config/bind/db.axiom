@@ -1,0 +1,21 @@
+;
+; BIND data file for local loopback interface
+;
+$TTL    604800
+@       IN      SOA     axiom. webmaster.axiom. (
+                         2         ; Serial
+                    604800         ; Refresh
+                     86400         ; Retry
+                   2419200         ; Expire
+                    604800 )       ; Negative Cache TTL
+;
+axiom.       		IN  NS  server.axiom.
+axiom.       		IN  A   192.168.10.250
+;@               	IN  A   127.0.0.1
+;@               	IN  AAAA    ::1
+peoplename         	IN  A   192.168.0.198
+something			IN  A	192.168.10.134
+something1			IN  A	192.168.10.120
+something2			IN  A	192.168.10.118
+windowsHostname		IN  A   192.168.10.115
+www       IN  CNAME   axiom.

@@ -1,0 +1,26 @@
+<AuthnProviderAlias ldap ldp2>
+	AuthLDAPURL "ldap://scm.srbd/DC=scm,DC=srbd?sAMAccountName?sub?(objectClass=*)" NONE
+	AuthLDAPBindDN "username@scm.srbd"
+	AuthLDAPBindPassword 'password of ldap 2'
+	AuthLDAPBindAuthoritative off
+</AuthnProviderAlias>
+
+<AuthnProviderAlias ldap ldp1>
+	AuthLDAPURL "ldap://sbrcdomain.com/OU=SBRC,DC=sbrcdomain,DC=com?sAMAccountName?sub?(objectClass=*)" NONE
+	AuthLDAPBindDN "username@sbrcdomain.com"
+	AuthLDAPBindPassword "password of ldap 1"
+</AuthnProviderAlias>
+
+<VirtualHost *:8989>
+	<Location "/login/">
+		AuthzLDAPAuthoritative off
+		AuthBasicProvider ldp1 ldp2
+		AuthType Basic
+		AuthName "Gerrit Code Review"
+		Require valid-user
+	</Location>	
+	
+	ProxyPass / http://107.109.6.241:8085/ nocanon
+	ProxyPassReverse / http://107.109.6.241:8085/ nocanon
+
+</VirtualHost>
