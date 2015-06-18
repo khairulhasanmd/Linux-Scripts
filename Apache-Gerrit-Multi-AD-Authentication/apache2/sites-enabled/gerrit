@@ -20,7 +20,7 @@
 		Require valid-user
 	</Location>	
 	
-	ProxyPass / http://107.109.6.241:8085/ nocanon
-	ProxyPassReverse / http://107.109.6.241:8085/ nocanon
+	ProxyPass / http://ipOfGerrit:port/ nocanon
+	ProxyPassReverse / http://ipOfGerrit:port/ nocanon
 
 </VirtualHost>
